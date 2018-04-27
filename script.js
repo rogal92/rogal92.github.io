@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var apiRoot = 'http://moviesapplication.us-east-2.elasticbeanstalk.com/';
+  var apiRoot = 'http://moviesapplication.us-east-2.elasticbeanstalk.com/v1/movie';
   var datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   var moviesContainer = $('[data-movies-container]');
 
