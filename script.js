@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var apiRoot = 'https://pure-ocean-16778.herokuapp.com/v1/movie/';
+  var apiRoot = 'http://moviesapplication.us-east-2.elasticbeanstalk.com/';
   var datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   var moviesContainer = $('[data-movies-container]');
 
