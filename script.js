@@ -87,69 +87,48 @@ $(document).ready(function() {
         }
       }
     });
-  }
+  }  
+   
+   function handleBoardNameSelect(event) {
+   var $changedSelectEl = $(event.target);
+   var selectedBoardId = $changedSelectEl.val();
+   var $listNameSelectEl = $changedSelectEl.siblings('[data-list-name-select]');
+   var preparedListOptions = prepareBoardOrListSelectOptions(availableBoards[selectedBoardId].lists);
 
-    //edycja
-//  function toggleEditingState() {
-//    var parentEl = $(this).parent().parent();
-//    parentEl.toggleClass('datatable__row--editing');
-//
-//    var movieTitle = parentEl.find('[data-movie-title-paragraph]').text();
-//    var movieAuthor = parentEl.find('[data-movie-author-paragraph]').text();
-//    var movieGenre = parentEl.find('[data-movie-genre-paragraph]').text();
-//    var movieProduction = parentEl.find('[data-movie-production-paragraph]').text();
-//
-//    parentEl.find('[data-movie-title-input]').val(movieTitle);
-//    parentEl.find('[data-movie-author-input]').val(movieAuthor);
-//    parentEl.find('[data-movie-genre-input]').val(movieGenre);
-//    parentEl.find('[data-movie-production-input]').val(movieProduction);
-//  }
-    
-    
-//    
-//    function handleBoardNameSelect(event) {
-//    var $changedSelectEl = $(event.target);
-//    var selectedBoardId = $changedSelectEl.val();
-//    var $listNameSelectEl = $changedSelectEl.siblings('[data-list-name-select]');
-//    var preparedListOptions = prepareBoardOrListSelectOptions(availableBoards[selectedBoardId].lists);
-//
-//    $listNameSelectEl.empty().append(preparedListOptions);
-//  }
-//
-//  function handleCardCreationRequest(event) {
-//    var requestUrl = trelloApiRoot + 'createTrelloCard';
-//    var $relatedMovieRow = $(event.target).parents('[data-movie-id]');
-//    var relatedMovieId = $relatedMovieRow.attr('data-movie-id');
-//    var relatedMovie = availableMovies[relatedMovieId];
-//    var selectedListId = $relatedMovieRow.find('[data-list-name-select]').val();
-//
-//    if (!selectedListId) {
-//      alert('You have to select a board and a list first!');
-//      return;
-//    }
-//
-//    $.ajax({
-//      url: requestUrl,
-//      method: 'POST',
-//      processData: false,
-//      contentType: "application/json; charset=utf-8",
-//      dataType: 'json',
-//      data: JSON.stringify({
-//        name: relatedMovie.title,
-//        description: relatedMovie.author + relatedMovie.genre + relatedMovie.production,
-//        listId: selectedListId
-//      }),
-//      success: function(data) {
-//        console.log('Card created - ' + data.shortUrl);
-//        alert('Card created - ' + data.shortUrl);
-//      }
-//    });
-//  }
+   $listNameSelectEl.empty().append(preparedListOptions);
+ }
+
+ function handleCardCreationRequest(event) {
+   var requestUrl = trelloApiRoot + 'createTrelloCard';
+   var $relatedMovieRow = $(event.target).parents('[data-movie-id]');
+   var relatedMovieId = $relatedMovieRow.attr('data-movie-id');
+   var relatedMovie = availableMovies[relatedMovieId];
+   var selectedListId = $relatedMovieRow.find('[data-list-name-select]').val();
+
+   if (!selectedListId) {
+     alert('You have to select a board and a list first!');
+     return;
+   }
+
+   $.ajax({
+     url: requestUrl,
+     method: 'POST',
+     processData: false,
+     contentType: "application/json; charset=utf-8",
+     dataType: 'json',
+     data: JSON.stringify({
+       name: relatedMovie.title,
+       description: relatedMovie.author + relatedMovie.genre + relatedMovie.production,
+       listId: selectedListId
+     }),
+     success: function(data) {
+       console.log('Card created - ' + data.shortUrl);
+       alert('Card created - ' + data.shortUrl);
+     }
+   });
+ }
 
   $('[data-movie-add-form]').on('submit', handleMovieSubmitRequest);
 
-//  moviesContainer.on('click','[data-movie-edit-button]', toggleEditingState);
-//  moviesContainer.on('click','[data-movie-edit-abort-button]', toggleEditingState);
-//  moviesContainer.on('click','[data-movie-submit-update-button]', handleMovieUpdateRequest);
   moviesContainer.on('click','[data-movie-delete-button]', handleMovieDeleteRequest);
 });
