@@ -87,46 +87,7 @@ $(document).ready(function() {
         }
       }
     });
-  }  
-   
-//    function handleBoardNameSelect(event) {
-//    var $changedSelectEl = $(event.target);
-//    var selectedBoardId = $changedSelectEl.val();
-//    var $listNameSelectEl = $changedSelectEl.siblings('[data-list-name-select]');
-//    var preparedListOptions = prepareBoardOrListSelectOptions(availableBoards[selectedBoardId].lists);
-
-//    $listNameSelectEl.empty().append(preparedListOptions);
-//  }
-
-//  function handleCardCreationRequest(event) {
-//    var requestUrl = trelloApiRoot + 'createTrelloCard';
-//    var $relatedMovieRow = $(event.target).parents('[data-movie-id]');
-//    var relatedMovieId = $relatedMovieRow.attr('data-movie-id');
-//    var relatedMovie = availableMovies[relatedMovieId];
-//    var selectedListId = $relatedMovieRow.find('[data-list-name-select]').val();
-
-//    if (!selectedListId) {
-//      alert('You have to select a board and a list first!');
-//      return;
-//    }
-
-//    $.ajax({
-//      url: requestUrl,
-//      method: 'POST',
-//      processData: false,
-//      contentType: "application/json; charset=utf-8",
-//      dataType: 'json',
-//      data: JSON.stringify({
-//        name: relatedMovie.title,
-//        description: relatedMovie.author + relatedMovie.genre + relatedMovie.production,
-//        listId: selectedListId
-//      }),
-//      success: function(data) {
-//        console.log('Card created - ' + data.shortUrl);
-//        alert('Card created - ' + data.shortUrl);
-//      }
-//    });
-//  }
+  }
 
   $('[data-movie-add-form]').on('submit', handleMovieSubmitRequest);
 
